@@ -56,7 +56,7 @@ rm -r attr-ops-data.tar.gz mitstates.zip utzap.zip splits.tar.gz cgqa.zip
 # Download embeddings
 
 # Glove (from attribute as operators)
-mv data/glove/* glove/
+# mv data/glove/* glove/
 
 # FastText
 cd fast
