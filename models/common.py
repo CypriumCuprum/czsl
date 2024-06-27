@@ -342,7 +342,8 @@ class Evaluator:
         '''
         # Go to CPU
         scores = {k: v.to('cpu') for k, v in scores.items()}
-        obj_truth = obj_truth.to(device)
+        # obj_truth = obj_truth.to(device)
+        obj_truth = obj_truth.to('cpu')
 
         # Gather scores for all relevant (a,o) pairs
         scores = torch.stack(
