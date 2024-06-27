@@ -74,4 +74,4 @@ cd ..
 rm -r data
 
 cd $CURRENT_DIR
-python utils/reorganize_utzap.py
+# python utils/reorganize_utzap.py
