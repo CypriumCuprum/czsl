@@ -66,7 +66,8 @@ rm cc.en.300.bin.gz
 
 # Word2Vec
 cd ../w2v
-wget -c "https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz"
+gdown --id 0B7XkCwpI5KDYNlNUTTlSS21pQmM --fuzzy
+# wget -c "https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz"
 gzip -d GoogleNews-vectors-negative300.bin.gz
 rm GoogleNews-vectors-negative300.bin.gz
 
