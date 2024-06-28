@@ -323,7 +323,7 @@ class Evaluator:
         attr_pred, obj_pred = scores
 
         # Go to CPU
-        attr_pred, obj_pred, obj_truth = attr_pred.to('cpu'), obj_pred.to('cpu'), obj_truth.to('cpu')
+        attr_pred, obj_pred, obj_truth = attr_pred.to(device), obj_pred.to(device), obj_truth.to(device)
 
         # Gather scores (P(a), P(o)) for all relevant (a,o) pairs
         # Multiply P(a) * P(o) to get P(pair)
@@ -341,9 +341,9 @@ class Evaluator:
         Wrapper function to call generate_predictions for manifold models
         '''
         # Go to CPU
-        scores = {k: v.to('cpu') for k, v in scores.items()}
-        # obj_truth = obj_truth.to(device)
-        obj_truth = obj_truth.to('cpu')
+        scores = {k: v.to(device) for k, v in scores.items()}
+        obj_truth = obj_truth.to(device)
+        # obj_truth = obj_truth.to('cpu')
 
         # Gather scores for all relevant (a,o) pairs
         scores = torch.stack(
@@ -369,7 +369,7 @@ class Evaluator:
 
         _, pair_pred = closed_scores.topk(topk, dim = 1) #sort returns indices of k largest values
         pair_pred = pair_pred.contiguous().view(-1)
-        self.pairs.to("cpu")
+        self.pairs.to(device)
         attr_pred, obj_pred = self.pairs[pair_pred][:, 0].view(-1, topk), \
             self.pairs[pair_pred][:, 1].view(-1, topk)
 
@@ -378,7 +378,7 @@ class Evaluator:
 
     def evaluate_predictions(self, predictions, attr_truth, obj_truth, pair_truth, allpred, topk = 1):
         # Go to CPU
-        attr_truth, obj_truth, pair_truth = attr_truth.to('cpu'), obj_truth.to('cpu'), pair_truth.to('cpu')
+        attr_truth, obj_truth, pair_truth = attr_truth.to(device), obj_truth.to(device), pair_truth.to(device)
 
         pairs = list(
             zip(list(attr_truth.numpy()), list(obj_truth.numpy())))
@@ -474,8 +474,8 @@ class Evaluator:
         seen_accuracy, unseen_accuracy = [], []
 
         # Go to CPU
-        base_scores = {k: v.to('cpu') for k, v in allpred.items()}
-        obj_truth = obj_truth.to('cpu')
+        base_scores = {k: v.to(device) for k, v in allpred.items()}
+        obj_truth = obj_truth.to(device)
 
         # Gather scores for all relevant (a,o) pairs
         base_scores = torch.stack(
