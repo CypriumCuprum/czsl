@@ -274,7 +274,7 @@ class CompositionDataset(Dataset):
             else:
                 test_data.append(curr_data)
 
-        return train_data, val_data, test_data
+        return train_data[:2000], val_data[:800], test_data[:400]
 
     def get_dict_data(self, data, pairs):
         data_dict = {}
