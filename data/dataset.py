@@ -189,7 +189,9 @@ class CompositionDataset(Dataset):
         self.transform = dataset_transform(self.phase, self.norm_family)
         self.loader = ImageLoader(ospj(self.root, 'images'))
         if not self.update_features:
-            feat_file = ospj(root, model+'_featurers.t7')
+            root_kaggle = "/kaggle/working/"
+            feat_file = ospj(root_kaggle, model+'_featurers.t7')
+            # feat_file = ospj(root, model+'_featurers.t7')
             print(f'Using {model} and feature file {feat_file}')
             if not os.path.exists(feat_file):
                 with torch.no_grad():
