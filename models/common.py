@@ -5,7 +5,8 @@ import numpy as np
 import copy
 from scipy.stats import hmean
 
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
+# device = 'cuda' if torch.cuda.is_available() else 'cpu'
+device = 'cpu'
 
 class MLP(nn.Module):
     '''
