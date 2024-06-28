@@ -369,6 +369,7 @@ class Evaluator:
 
         _, pair_pred = closed_scores.topk(topk, dim = 1) #sort returns indices of k largest values
         pair_pred = pair_pred.contiguous().view(-1)
+        self.pairs.to("cpu")
         attr_pred, obj_pred = self.pairs[pair_pred][:, 0].view(-1, topk), \
             self.pairs[pair_pred][:, 1].view(-1, topk)
 
